@@ -148,7 +148,7 @@ export default function WrappedExperience({ username, year }: WrappedExperienceP
             )}
 
             <span className="text-sm text-gray-400">
-              {currentCard + 1} / {5} {/* Will be dynamic based on card count */}
+              {currentCard + 1} / {12}
             </span>
           </div>
         </div>

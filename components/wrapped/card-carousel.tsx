@@ -6,12 +6,19 @@ import { ChevronLeft, ChevronRight, Play, Pause } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { GitHubStatsData } from '@/hooks/use-github-stats'
 
-// Import card components (we'll create these next)
+// Import card components
 import OverviewCard from '@/components/cards/overview-card'
 import LanguagesCard from '@/components/cards/languages-card'
 import ContributionsCard from '@/components/cards/contributions-card'
 import StreakCard from '@/components/cards/streak-card'
 import PersonalityCard from '@/components/cards/personality-card'
+import WeekdayWarriorCard from '@/components/cards/weekday-warrior-card'
+import RepositoryShowcaseCard from '@/components/cards/repository-showcase-card'
+import PullRequestMasterCard from '@/components/cards/pull-request-master-card'
+import YearProgressCard from '@/components/cards/year-progress-card'
+import CodePoetCard from '@/components/cards/code-poet-card'
+import AchievementHunterCard from '@/components/cards/achievement-hunter-card'
+import PredictionsCard from '@/components/cards/predictions-card'
 
 interface CardCarouselProps {
   stats: GitHubStatsData
@@ -21,13 +28,20 @@ interface CardCarouselProps {
   onCardChange: (index: number) => void
 }
 
-// Define the card types and their components
+// Define the card types and their components (12 total cards)
 const cardComponents = [
-  { component: OverviewCard, name: 'Overview', description: 'Your year in numbers' },
-  { component: ContributionsCard, name: 'Contributions', description: 'Your coding activity' },
-  { component: LanguagesCard, name: 'Languages', description: 'Your tech stack' },
-  { component: StreakCard, name: 'Streak', description: 'Consistency matters' },
-  { component: PersonalityCard, name: 'Personality', description: 'Your coding style' },
+  { component: OverviewCard, name: 'Overview', description: 'Your year in numbers', tier: 'free' },
+  { component: ContributionsCard, name: 'Contributions', description: 'Your coding activity', tier: 'free' },
+  { component: LanguagesCard, name: 'Languages', description: 'Your tech stack', tier: 'free' },
+  { component: StreakCard, name: 'Streak', description: 'Consistency matters', tier: 'free' },
+  { component: PersonalityCard, name: 'Personality', description: 'Your coding style', tier: 'free' },
+  { component: WeekdayWarriorCard, name: 'Weekday Warrior', description: 'Your weekly coding rhythm', tier: 'pro' },
+  { component: RepositoryShowcaseCard, name: 'Repository Showcase', description: 'Your standout projects', tier: 'pro' },
+  { component: PullRequestMasterCard, name: 'PR Master', description: 'Your collaboration excellence', tier: 'pro' },
+  { component: YearProgressCard, name: 'Year Progress', description: 'Your coding journey timeline', tier: 'pro' },
+  { component: CodePoetCard, name: 'Code Poet', description: 'Your coding journey in verse', tier: 'pro' },
+  { component: AchievementHunterCard, name: 'Achievement Hunter', description: 'Your coding milestones', tier: 'pro' },
+  { component: PredictionsCard, name: '2025 Predictions', description: 'AI-powered future insights', tier: 'pro' },
 ]
 
 export default function CardCarousel({ stats, username, year, currentCard, onCardChange }: CardCarouselProps) {
