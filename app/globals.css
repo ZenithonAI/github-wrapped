@@ -1,0 +1,80 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    @apply border-gray-800;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+@layer utilities {
+  .glass {
+    @apply bg-white/10 backdrop-blur-md border border-white/20;
+  }
+
+  .glass-card {
+    @apply bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-md border border-white/20 rounded-xl;
+  }
+
+  .gradient-primary {
+    @apply bg-gradient-to-r from-primary-500 to-secondary-500;
+  }
+
+  .gradient-background {
+    @apply bg-gradient-to-br from-primary-900/20 via-background to-secondary-900/20;
+  }
+
+  .text-gradient {
+    @apply bg-gradient-to-r from-primary-400 to-secondary-400 bg-clip-text text-transparent;
+  }
+
+  .animate-tilt {
+    transition: transform 0.3s ease;
+  }
+
+  .animate-tilt:hover {
+    transform: perspective(1000px) rotateX(5deg) rotateY(5deg) scale3d(1.05, 1.05, 1.05);
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-background;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-primary-600 rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-primary-500;
+}
+
+/* Smooth scroll behavior */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Loading animation */
+@keyframes shimmer {
+  0% {
+    background-position: -468px 0;
+  }
+  100% {
+    background-position: 468px 0;
+  }
+}
+
+.animate-shimmer {
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+  background-size: 468px 104px;
+  animation: shimmer 1.2s ease-in-out infinite;
+}
