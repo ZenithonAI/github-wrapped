@@ -57,14 +57,14 @@ export class GitHubClient {
       return {
         id: data.id,
         login: data.login,
-        name: data.name,
-        email: data.email,
+        name: data.name || null,
+        email: data.email || null,
         avatar_url: data.avatar_url,
-        bio: data.bio,
-        company: data.company,
-        location: data.location,
-        blog: data.blog,
-        twitter_username: data.twitter_username,
+        bio: data.bio || null,
+        company: data.company || null,
+        location: data.location || null,
+        blog: data.blog || null,
+        twitter_username: data.twitter_username || null,
         public_repos: data.public_repos,
         followers: data.followers,
         following: data.following,
@@ -98,18 +98,18 @@ export class GitHubClient {
         const filteredRepos = data
           .filter(repo => {
             if (!year) return true
-            const repoYear = new Date(repo.created_at).getFullYear()
+            const repoYear = new Date(repo.created_at || '').getFullYear()
             return repoYear === year
           })
           .map(repo => ({
             name: repo.name,
-            language: repo.language,
-            stars: repo.stargazers_count,
-            forks: repo.forks_count,
-            size: repo.size,
-            created_at: repo.created_at,
-            updated_at: repo.updated_at,
-            is_fork: repo.fork,
+            language: repo.language || null,
+            stars: repo.stargazers_count || 0,
+            forks: repo.forks_count || 0,
+            size: repo.size || 0,
+            created_at: repo.created_at || '',
+            updated_at: repo.updated_at || '',
+            is_fork: repo.fork || false,
           }))
 
         repositories.push(...filteredRepos)
@@ -301,7 +301,8 @@ export class GitHubClient {
     }
   }
 
-  private isCacheValid(updatedAt: string): boolean {
+  private isCacheValid(updatedAt: string | undefined): boolean {
+    if (!updatedAt) return false
     const cacheAge = Date.now() - new Date(updatedAt).getTime()
     const maxAge = 24 * 60 * 60 * 1000 // 24 hours
     return cacheAge < maxAge

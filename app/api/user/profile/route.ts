@@ -23,7 +23,7 @@ export async function GET(request: NextRequest) {
 
     if (!user) {
       // User doesn't exist in our database, create them
-      const githubClient = new GitHubClient(session.provider_token)
+      const githubClient = new GitHubClient(session.provider_token || undefined)
       const githubUser = await githubClient.getUser(session.user.user_metadata.user_name)
 
       const { data: newUser, error: insertError } = await supabase

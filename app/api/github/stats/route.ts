@@ -41,7 +41,7 @@ export async function GET(request: NextRequest) {
     }
 
     // Fetch fresh data from GitHub
-    const githubClient = new GitHubClient(session.provider_token)
+    const githubClient = new GitHubClient(session.provider_token || undefined)
     const stats = await githubClient.getComprehensiveStats(username, year)
 
     // Calculate additional metrics
@@ -153,7 +153,7 @@ function generatePersonalityTraits(stats: any): string[] {
 
   // Time-based analysis would need commit times data
   if (stats.commitTimes.length > 0) {
-    const nightCommits = stats.commitTimes.filter(hour => hour >= 22 || hour <= 6).length
+    const nightCommits = stats.commitTimes.filter((hour: number) => hour >= 22 || hour <= 6).length
     const totalCommitTimes = stats.commitTimes.length
 
     if (nightCommits / totalCommitTimes > 0.3) {

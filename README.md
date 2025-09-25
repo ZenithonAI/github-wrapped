@@ -24,9 +24,17 @@ Transform your GitHub activity into stunning, shareable cards that showcase your
 
 ## 🚀 Getting Started
 
+### Prerequisites
+
+- Node.js 18+ and npm
+- A GitHub account for testing
+- (Optional) Supabase account for full functionality
+
+### Local Development
+
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/codebyaaron/github-wrapped.git
+   git clone https://github.com/ZenithonAI/github-wrapped.git
    cd github-wrapped
    ```
 
@@ -38,15 +46,42 @@ Transform your GitHub activity into stunning, shareable cards that showcase your
 3. **Set up environment variables**
    ```bash
    cp .env.example .env.local
-   # Fill in your environment variables
    ```
 
-4. **Run the development server**
-   ```bash
-   npm run dev
+   **For basic testing (landing page only):**
+   - No environment variables needed
+   - Landing page will work immediately
+
+   **For full functionality (GitHub Wrapped generation):**
+   ```env
+   # Supabase (Database & Auth)
+   NEXT_PUBLIC_SUPABASE_URL=your-supabase-url
+   NEXT_PUBLIC_SUPABASE_ANON_KEY=your-supabase-anon-key
+   SUPABASE_SERVICE_KEY=your-supabase-service-key
+
+   # GitHub OAuth (for authentication)
+   GITHUB_CLIENT_ID=your-github-client-id
+   GITHUB_CLIENT_SECRET=your-github-client-secret
+
+   # Optional: AI-powered insights
+   ANTHROPIC_API_KEY=your-anthropic-api-key
    ```
 
 5. **Open [http://localhost:3000](http://localhost:3000)**
+
+   The app is now running! You can:
+   - View the spectacular landing page immediately
+   - Test the wrapped generation by visiting `/wrapped/[any-github-username]`
+   - Sign in with GitHub to generate your own wrapped (requires environment setup)
+
+### Quick Test
+
+To test the wrapped experience without full setup:
+```
+http://localhost:3000/wrapped/octocat
+```
+
+This will show the wrapped generation flow (though it will fail at data fetching without proper GitHub API access).
 
 ## 📁 Project Structure
 
